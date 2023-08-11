@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import { Languages } from "./languages.model";
 import { CreateLanguageDto } from "./dto/create-language.dto";
@@ -11,6 +11,7 @@ constructor(@InjectModel(Languages) private languageRepository: typeof Languages
   async createLanguage(dto: CreateLanguageDto) {
     return await this.languageRepository.create(dto);
   }
+
   async getLanguagesByUser(userId: number) {
   return await this.languageRepository.findAll({where: {userId}})
   }
