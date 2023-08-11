@@ -1,6 +1,7 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from "sequelize-typescript";
+import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 import { Languages } from "../languages/languages.model";
+import { Words } from "../words/words.model";
 
 interface ICategoryModel {
   name: string;
@@ -29,5 +30,8 @@ export class Categories extends Model<Categories, ICategoryModel> {
 
   @BelongsTo(() => Languages)
   language: Languages;
+
+  @HasMany(() => Words)
+  words: Words[];
 }
 

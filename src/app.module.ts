@@ -11,6 +11,8 @@ import { LanguagesModule } from "./languages/languages.module";
 import { Languages } from "./languages/languages.model";
 import { CategoriesModule } from "./categories/categories.module";
 import { Categories } from "./categories/category.model";
+import { WordsModule } from "./words/words.module";
+import { Words } from "./words/words.model";
 
 @Module({
   imports: [
@@ -24,14 +26,15 @@ import { Categories } from "./categories/category.model";
       username: process.env.POSTGRES_USERNAME,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [User, Role, Languages, Categories],
+      models: [User, Role, Languages, Categories, Words],
       autoLoadModels: true
     }),
     UsersModule,
     RolesModule,
     AuthModule,
     LanguagesModule,
-    CategoriesModule
+    CategoriesModule,
+    WordsModule
   ],
   controllers: [AuthController],
   providers: [],

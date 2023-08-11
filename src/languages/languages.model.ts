@@ -1,4 +1,4 @@
-import { Column, DataType, HasOne, Model, Table } from "sequelize-typescript";
+import { Column, DataType, HasMany, Model, Table } from "sequelize-typescript";
 import { ApiProperty } from "@nestjs/swagger";
 import { Categories } from "../categories/category.model";
 
@@ -26,6 +26,6 @@ export class Languages extends Model<Languages, ILanguageModel> {
   @Column({ type: DataType.STRING, allowNull: false })
   userId: number;
 
-  @HasOne(() => Categories)
-  categories: Categories;
+  @HasMany(() => Categories)
+  categories: Categories[];
 }

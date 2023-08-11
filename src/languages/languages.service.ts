@@ -13,6 +13,6 @@ constructor(@InjectModel(Languages) private languageRepository: typeof Languages
   }
 
   async getLanguagesByUser(userId: number) {
-  return await this.languageRepository.findAll({where: {userId}})
+  return await this.languageRepository.findAll({ where: { userId }, include: { all: true } });
   }
 }
