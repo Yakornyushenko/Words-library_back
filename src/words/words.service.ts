@@ -16,4 +16,12 @@ export class WordsService {
   async getWords(categoryId: number) {
     return this.wordRepository.findAll({ where: { categoryId } });
   }
+
+  async deleteWord(id: number) {
+    return this.wordRepository.destroy({ where: { id } });
+  }
+
+  async updateWord(id: number, data: Words) {
+    return this.wordRepository.update(data, { where: { id } });
+  }
 }

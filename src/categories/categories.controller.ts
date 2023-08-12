@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { CategoriesService } from "./categories.service";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { CreateCategoryDto } from "./dto/create-category.dto";
@@ -23,5 +23,19 @@ export class CategoriesController {
   @Get("/:value")
   getAll(@Param("value") languageId: number) {
     return this.categoriesService.getCategories(languageId);
+  }
+
+  @ApiOperation({ summary: "удаление категории" })
+  @ApiResponse({ status: 200, type: Categories })
+  @Delete("/:value")
+  delete(@Param("value") categoryId: number) {
+    return this.categoriesService.deleteCategory(categoryId);
+  }
+
+  @ApiOperation({ summary: "обновление категории" })
+  @ApiResponse({ status: 200, type: Categories })
+  @Put("/:value")
+  async update(@Param("value") id: number, @Body() data: Categories) {
+    return this.categoriesService.updateCategory(id, data);
   }
 }

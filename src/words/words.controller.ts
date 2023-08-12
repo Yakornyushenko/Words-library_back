@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { WordsService } from "./words.service";
 import { Words } from "./words.model";
@@ -23,5 +23,19 @@ export class WordsController {
   @Get("/:value")
   getAll(@Param("value") categoryId: number) {
     return this.wordsService.getWords(categoryId);
+  }
+
+  @ApiOperation({ summary: "удаление слова" })
+  @ApiResponse({ status: 200, type: Words })
+  @Delete("/:value")
+  delete(@Param("value") wordId: number) {
+    return this.wordsService.deleteWord(wordId);
+  }
+
+  @ApiOperation({ summary: "обновление слова" })
+  @ApiResponse({ status: 200, type: Words })
+  @Put("/:value")
+  async update(@Param("value") id: number, @Body() data: Words) {
+    return this.wordsService.updateWord(id, data);
   }
 }

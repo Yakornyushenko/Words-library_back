@@ -16,4 +16,12 @@ export class CategoriesService {
   async getCategories(languageId: number) {
     return this.categoriesRepository.findAll({ where: { languageId } });
   }
+
+  async deleteCategory(id: number) {
+    return this.categoriesRepository.destroy({ where: { id } });
+  }
+
+  async updateCategory(id: number, data: Categories) {
+    return this.categoriesRepository.update(data, { where: { id } });
+  }
 }
