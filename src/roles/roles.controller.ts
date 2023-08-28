@@ -24,4 +24,11 @@ export class RolesController {
   getOne(@Param("value") value: string) {
     return this.rolesService.getRole(value);
   }
+
+  @ApiOperation({ summary: "Получение всех ролей" })
+  @ApiResponse({ status: 200, type: Role })
+  @Get()
+  getAll() {
+    return this.rolesService.getRoles();
+  }
 }
